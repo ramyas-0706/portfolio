@@ -1,10 +1,16 @@
 $breaking-point: 980px;
 
 div.header-wrapper {
-    padding: 1em 2em;
+    padding: 1.2em 2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-color) 100%);
+    box-shadow: 0 2px 20px var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: slideDown 0.6s ease-out;
     @media (max-width: $breaking-point) {
         position: relative;
     }
@@ -13,12 +19,17 @@ div.header-wrapper {
     }
     > div.name-logo {
         display: flex;
-        gap: 10px;
+        gap: 15px;
         align-items: center;
+        animation: ltor 0.7s ease-out;
         > img {
             display: inline-block;
             height: 50px;
             object-fit: contain;
+            transition: transform 0.3s ease;
+            &:hover {
+                transform: scale(1.1);
+            }
         }
         >div.name-des {
             display: flex;
@@ -30,14 +41,20 @@ div.header-wrapper {
             > span.name {
                 font-weight: 600;
                 font-size: 2rem;
+                background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
                 @media (max-width:712px) {
                     font-size: 1.5rem;
                 }
             }
             > span.designation {
-                color: var(--border-color);
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                font-weight: 500;
                 @media (max-width:712px) {
-                    font-size: 0.9rem;
+                    font-size: 0.8rem;
                 }
             }
         }
@@ -47,15 +64,16 @@ div.header-wrapper {
             position: absolute;
             right: 5%;
             top: 100%;
-            box-shadow: 0 0 8px 0 var(--border-color);
+            background: var(--bg-secondary);
+            box-shadow: 0 8px 32px var(--shadow-medium);
             max-height: 0;
             overflow-y: hidden;
             pointer-events: none;
-            transition: max-height 0.5s ease-out;
-            background-color: var(--bg-color);
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0 0 12px 12px;
             &.show {
                 pointer-events: all;
-                max-height: 219px;
+                max-height: 250px;
                 z-index: 2;
             }
         }
@@ -67,13 +85,42 @@ div.header-wrapper {
             @media (max-width: $breaking-point) {
                 padding: 1.5em 1em;
                 flex-direction: column;
+                gap: 1.2em;
             }
             > li {
+                position: relative;
+                animation: slideUp 0.5s ease-out;
+                &:hover > a {
+                    color: var(--accent-color);
+                }
+                > a {
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                    display: block;
+                    padding: 0.5em 0;
+                    position: relative;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 0;
+                        height: 2px;
+                        background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+                        transition: width 0.3s ease;
+                    }
+                    &:hover::after {
+                        width: 100%;
+                    }
+                }
                 &.active {
-                    color: var(--accent-color); // todo: theme
-                    text-shadow:
-                        0 0 1px #00aaffcc,
-                        0 0 2px #00aaff4d;
+                    > a {
+                        color: var(--accent-color);
+                        &::after {
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
@@ -84,6 +131,8 @@ div.header-wrapper {
         background-color: transparent;
         gap: 8px;
         flex-direction: column;
+        padding: 0.5em;
+        cursor: pointer;
         @media (max-width: $breaking-point) {
             display: flex;
         }
@@ -92,6 +141,21 @@ div.header-wrapper {
             height: 3px;
             width: 45px;
             background-color: var(--color);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        &.active {
+            > span {
+                &:nth-child(1) {
+                    transform: rotate(45deg) translate(12px, 12px);
+                }
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+                &:nth-child(3) {
+                    transform: rotate(-45deg) translate(12px, -12px);
+                }
+            }
         }
     }
 }
