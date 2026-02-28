@@ -3,16 +3,15 @@ div.contact-wrapper {
     justify-content: space-around;
     align-items: center;
     min-height: calc(100vh - 150px);
-    padding: 3em 2em;
-    gap: 3em;
-    animation: fadeIn 0.8s ease-out;
+    padding: 2em;
+    gap: 2em;
+    animation: fadeIn 0.5s;
     @media (max-width: 850px) {
         flex-direction: column;
         gap: 2em;
     }
     > div.social {
-        opacity: 0;
-        animation: ltor 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        animation: ltor 0.6s ease-out forwards;
         > p {
             font-weight: 600;
             font-size: 1.2em;
@@ -37,28 +36,22 @@ div.contact-wrapper {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 50px;
-                    height: 50px;
+                    width: 45px;
+                    height: 45px;
                     border-radius: 50%;
-                    background: linear-gradient(135deg, rgba(0, 170, 255, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
                     border: 2px solid var(--border-color);
-                    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    transition: all 0.3s;
                     > svg {
-                        height: 1.5em;
-                        width: 1.5em;
-                        font-size: 1.25em;
-                        transition: all 0.3s ease;
+                        height: 1.3em;
+                        width: 1.3em;
                         color: var(--accent-color);
                     }
                     &:hover {
-                        transform: translateY(-5px);
-                        background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+                        transform: translateY(-4px);
+                        background: var(--accent-color);
                         border-color: var(--accent-color);
-                        box-shadow: 0 8px 25px rgba(0, 170, 255, 0.3);
                         > svg {
-                            fill: white;
                             color: white;
-                            transform: scale(1.2);
                         }
                     }
                 }
@@ -66,45 +59,30 @@ div.contact-wrapper {
         }
     }
     > form.contact-frm {
-        padding: 2.5em;
-        opacity: 0;
-        animation: rtol 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        padding: 2em;
+        animation: rtol 0.6s ease-out forwards;
         background: var(--bg-secondary);
-        border-radius: 16px;
-        box-shadow: 0 8px 32px var(--shadow-light);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px var(--shadow-light);
         border: 1px solid var(--border-color);
-        min-width: 400px;
-        transition: all 0.3s ease;
+        min-width: 380px;
         @media (max-width: 500px) {
             min-width: 100%;
-            padding: 2em 1.5em;
-        }
-        &:hover {
-            box-shadow: 0 12px 40px var(--shadow-medium);
+            padding: 1.5em;
         }
         > div.control {
-            margin: 1.5em 0;
-            opacity: 0;
-            animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            &:nth-child(1) {
-                animation-delay: 0.1s;
-            }
-            &:nth-child(2) {
-                animation-delay: 0.2s;
-            }
+            margin: 1.2em 0;
             border-bottom: 2px solid var(--border-color);
-            padding: 12px 0;
-            transition: all 0.3s ease;
+            padding: 8px 0;
             > input,
             > textarea {
-                border: transparent;
-                background-color: transparent;
+                border: none;
+                background: transparent;
                 outline: none;
                 width: 100%;
                 font-size: 1rem;
                 font-family: inherit;
                 color: inherit;
-                transition: all 0.3s ease;
                 resize: vertical;
                 &::placeholder {
                     color: var(--text-secondary);
